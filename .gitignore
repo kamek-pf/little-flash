@@ -1,0 +1,12 @@
+gen/
+build/
+bin/
+
+.settings/
+.project
+.classpath
+
+local.properties
+proguard-project.txt
+
+*.swp
