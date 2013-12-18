@@ -1,18 +1,21 @@
 Android - Item tracker based on QR codes
-===============
+---------------
 
 By :
-    Tehau "Wandy" TSING
-    Nicolas "Dickhead" DUBOIS
-    Bertrand "Kamek" BOUSQUET
+
+Tehau "Wandy" TSING
+Nicolas "Dickhead" DUBOIS
+Bertrand "Kamek" BOUSQUET
 
 
 Run :
-        android update project -p <path to project>
-    to generate android local configuration files
+
+    android update project -p <path to project>
+to generate android local configuration files
             
-        ant debug && ant installd
-    to push the upload the app to your device
+    ant debug && ant installd
+to push the upload the app to your device
+
 
 
 To import the project into your shit IDE :
@@ -24,4 +27,6 @@ To import the project into your shit IDE :
 
 
 **Also, OP is a faggot**
+
+
 ![tag](http://kamek-pf.github.io/img/op_helmet.png)
