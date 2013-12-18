@@ -4,17 +4,18 @@ Android - Item tracker based on QR codes
 By :
 
 Tehau "Wandy" TSING
+
 Nicolas "Dickhead" DUBOIS
+
 Bertrand "Kamek" BOUSQUET
 
 
-Run :
 
+To generate android local configuration files :
     android update project -p <path to project>
-to generate android local configuration files
             
+To push the upload the app to your device :
     ant debug && ant installd
-to push the upload the app to your device
 
 
 
