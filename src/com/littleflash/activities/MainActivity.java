@@ -1,4 +1,4 @@
-package com.littleflash;
+package com.littleflash.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
