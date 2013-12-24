@@ -23,7 +23,7 @@ To import the project into your shit IDE :
 - Create a tmp directory
 - Clone this into tmp
 - Copy the ".git" and ".gitignore" files into the directory created by your IDE 
-- cd to that directory and "git pull"
+- cd to that directory and "git stash"
 
 
 **Also, OP is a faggot**
