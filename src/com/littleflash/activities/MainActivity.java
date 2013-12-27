@@ -24,7 +24,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-
 import com.google.api.client.util.DateTime;
 import com.littleflash.pojos.DataStoreHelper;
 import com.littleflash.pojos.QRData;
