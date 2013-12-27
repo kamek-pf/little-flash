@@ -1,6 +1,9 @@
 Android - Item tracker based on QR codes
 ---------------
 
+AppEngine backend :           
+http://little-flash.appspot.com/
+
 By:      
 Tehau "Wandy" TSING      
 Nicolas "Dickhead" DUBOIS      
