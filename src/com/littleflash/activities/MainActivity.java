@@ -19,6 +19,11 @@ import java.util.Date;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+
 
 import com.google.api.client.util.DateTime;
 import com.littleflash.pojos.DataStoreHelper;
@@ -28,6 +33,8 @@ import com.littleflash.pojos.QRData;
 public class MainActivity extends Activity {
 
 	private QRData data;
+    private EditText shop_id, product_type, product_id, price;
+    private Button send;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +42,32 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 
 		data = new QRData();
-		data.setShopId("0x00DOGESHOP");
-		data.setItemId("0x00HOLYDOGE");
-		data.setItemType("doge sdkjcnzk");
-		data.setPrice("such price");
-		data.setFlashDate(new DateTime(new Date()));
 
-		new SendThread().execute();
+        shop_id = (EditText) findViewById(R.id.s_id);
+        product_type = (EditText) findViewById(R.id.p_type);
+        product_id = (EditText) findViewById(R.id.p_id);
+        price = (EditText) findViewById(R.id.p_price);
+        send = (Button) findViewById(R.id.send);
 
+        send.setOnClickListener(sendListener);
 	}
-	private class SendThread extends AsyncTask<Void, Void, Void>
-	{
+	
+    // Create an anonymous implementation of OnClickListener
+    private OnClickListener sendListener = new OnClickListener() {
+        public void onClick(View v) {
+		    data.setShopId(shop_id.getText().toString());
+            data.setItemType(product_type.getText().toString());
+            data.setItemId(product_id.getText().toString());
+            data.setPrice(price.getText().toString());
+            data.setFlashDate(new DateTime(new Date()));
+
+            new SendThread().execute();
+        }
+    };
+
+
+    private class SendThread extends AsyncTask<Void, Void, Void>
+    {
 		@Override
 		protected Void doInBackground(Void... param) 
 		{  
