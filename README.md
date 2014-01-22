@@ -10,6 +10,24 @@ Nicolas "Dickhead" DUBOIS
 Bertrand "Kamek" BOUSQUET       
 
 
+Todo (server side) :      
+---------------
+[X] Shit tier UI      
+[X] God tier UI      
+[X] Persistence      
+[ ] Send data (backend to device)      
+[ ] Admin login      
+
+
+Todo (client side) :      
+---------------
+[X] Shit tier UI      
+[ ] God tier UI      
+[ ] Persistence      
+[X] Send data (device to backend)      
+[ ] QR Reader      
+
+
 
 To generate android local configuration files :      
 ```
