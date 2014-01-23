@@ -15,7 +15,8 @@ Todo (server side) :
 [X] Shit tier UI      
 [X] God tier UI      
 [X] Persistence      
-[ ] Send data (backend to device)      
+[X] Send data (backend to device done w/ email)      
+[ ] Send some sort of ACK (HTTP ?)
 [ ] Admin login      
 
 
@@ -25,6 +26,7 @@ Todo (client side) :
 [ ] God tier UI      
 [ ] Persistence      
 [X] Send data (device to backend)      
+[ ] Get user's email address
 [ ] QR Reader      
 
 
