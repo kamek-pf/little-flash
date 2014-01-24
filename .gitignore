@@ -3,6 +3,8 @@ build/
 bin/
 
 .settings/
+.directory
+.gitignore
 .project
 .classpath
 
