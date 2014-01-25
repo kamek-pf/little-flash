@@ -1,24 +1,15 @@
-/* Copyright (c) 2012 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.littleflash.activities;
 
 import java.util.Date;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -27,20 +18,23 @@ import android.widget.EditText;
 import com.google.api.client.util.DateTime;
 import com.littleflash.pojos.DataStoreHelper;
 import com.littleflash.pojos.QRData;
+import com.littleflash.activities.EmailSelector;
 
 
 public class MainActivity extends Activity {
 
-	private QRData data;
+	private SharedPreferences prefs = null;
+    private QRData data;
     private EditText shop_id, product_type, product_id, price;
     private Button send;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
 
-		data = new QRData();
+        prefs = getSharedPreferences("com.littleflash.core", MODE_PRIVATE);
+        data = new QRData();
 
         shop_id = (EditText) findViewById(R.id.s_id);
         product_type = (EditText) findViewById(R.id.p_type);
@@ -49,12 +43,36 @@ public class MainActivity extends Activity {
         send = (Button) findViewById(R.id.send);
 
         send.setOnClickListener(sendListener);
-	}
-	
+    }
+    
+    // Set drop down menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.list_options, menu);
+
+        return true;
+    }
+
+    // Set drop down menu item's actions
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item)
+    {
+        if(item.getItemId() == R.id.email_settings)
+        {
+            Intent intent = new Intent(this, EmailSelector.class);
+            this.startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     // Create an anonymous implementation of OnClickListener
     private OnClickListener sendListener = new OnClickListener() {
         public void onClick(View v) {
-		    data.setShopId(shop_id.getText().toString());
+            data.setShopId(shop_id.getText().toString());
             data.setItemType(product_type.getText().toString());
             data.setItemId(product_id.getText().toString());
             data.setPrice(price.getText().toString());
@@ -65,14 +83,29 @@ public class MainActivity extends Activity {
     };
 
 
+    // Thread for netwok stuff
     private class SendThread extends AsyncTask<Void, Void, Void>
     {
-		@Override
-		protected Void doInBackground(Void... param) 
-		{  
-			DataStoreHelper dataStore = new DataStoreHelper(data);
-			dataStore.sendData();
-			return null;
-		}
-	}
+        @Override
+        protected Void doInBackground(Void... param) 
+        {  
+            DataStoreHelper dataStore = new DataStoreHelper(data);
+            dataStore.sendData();
+            return null;
+        }
+    }
+   
+    // Handle first run
+    @Override
+    protected void onResume() 
+    {
+        super.onResume();
+
+        if (prefs.getBoolean("firstrun", true)) 
+        {
+            Intent intent = new Intent(this, EmailSelector.class);
+            this.startActivity(intent);
+        }
+    }
+
 }
