@@ -5,8 +5,10 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 
+import com.littleflash.events.EmailButtonListener;
 import com.littleflash.pojos.EmailHandler;
 
 public class EmailSelector extends Activity {
@@ -14,6 +16,7 @@ public class EmailSelector extends Activity {
 	 private SharedPreferences prefs = null;
      private String email;
      private EditText emailField;
+     private Button defaultButton, saveButton;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,11 @@ public class EmailSelector extends Activity {
         
         email = prefs.getString("UserEmail", "youremail@yourprovider.xyz");
         emailField.setText(email);
+
+        defaultButton = (Button) findViewById(R.id.email_default);
+        saveButton = (Button) findViewById(R.id.email_save);
+        defaultButton.setOnClickListener(new EmailButtonListener(this, prefs, emailField));
+        saveButton.setOnClickListener(new EmailButtonListener(this, prefs, emailField));
     }
 
     
