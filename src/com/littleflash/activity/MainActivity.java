@@ -1,6 +1,7 @@
 package com.littleflash.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -17,86 +18,92 @@ import com.littleflash.pojo.DataStoreHelper;
 import com.littleflash.pojo.QRData;
 import com.littleflash.activities.R;
 import com.littleflash.activity.EmailSelector;
-
-
 public class MainActivity extends Activity {
 
-	private SharedPreferences prefs = null;
-    private QRData data;
-    private EditText product_id;
-    private Button send;
-    
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        this.getApplicationContext();
+private SharedPreferences prefs = null;
+private QRData data;
+private EditText product_id;
+private Button send;
+private Context c;
 
-        prefs = getSharedPreferences("com.littleflash.core", MODE_PRIVATE);
-        data = new QRData();
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+    c = this.getApplicationContext();
 
-        product_id = (EditText) findViewById(R.id.p_id);
-        send = (Button) findViewById(R.id.send);
+    prefs = getSharedPreferences("com.littleflash.core", MODE_PRIVATE);
+    data = new QRData();
 
-        send.setOnClickListener(sendListener);
-    }
-    
-    // Set drop down menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
+    product_id = (EditText) findViewById(R.id.p_id);
+    send = (Button) findViewById(R.id.send);
 
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.list_options, menu);
+    send.setOnClickListener(sendListener);
+}
 
-        return true;
-    }
+// Set drop down menu
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    super.onCreateOptionsMenu(menu);
 
-    // Set drop down menu item's actions
-    @Override
-    public boolean onOptionsItemSelected (MenuItem item)
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.list_options, menu);
+
+    return true;
+}
+
+// Set drop down menu item's actions
+@Override
+public boolean onOptionsItemSelected (MenuItem item)
+{
+    if(item.getItemId() == R.id.email_settings)
     {
-        if(item.getItemId() == R.id.email_settings)
-        {
-            Intent intent = new Intent(this, EmailSelector.class);
-            this.startActivity(intent);
-        }
-
-        return super.onOptionsItemSelected(item);
+        Intent intent = new Intent(this, EmailSelector.class);
+        this.startActivity(intent);
     }
 
-    // Create an anonymous implementation of OnClickListener
-    private OnClickListener sendListener = new OnClickListener() {
-        public void onClick(View v) {
-            data.setItemId(product_id.getText().toString());
-            new SendThread().execute();
-        }
-    };
+    return super.onOptionsItemSelected(item);
+}
 
+// Create an anonymous implementation of OnClickListener
+private OnClickListener sendListener = new OnClickListener() {
+    public void onClick(View v) {
+        data.setItemId(product_id.getText().toString());
 
-    // Thread for network stuff
-    private class SendThread extends AsyncTask<Void, Void, Void>
-    {
-        @Override
-        protected Void doInBackground(Void... param) 
-        {  
-            DataStoreHelper dataStore = new DataStoreHelper(data);
-            dataStore.sendData();
-            return null;
-        }
+        new SendThread(c).execute();
     }
-   
-    // Handle first run
+};
+
+
+// Thread for netwok stuff
+private class SendThread extends AsyncTask<Void, Void, Void>
+{
+	private Context c;
+	
+	public SendThread(Context c)
+	{
+		this.c = c;
+	}
     @Override
-    protected void onResume() 
+    protected Void doInBackground(Void... param)
     {
-        super.onResume();
-
-        if (prefs.getBoolean("firstrun", true)) 
-        {
-            Intent intent = new Intent(this, EmailSelector.class);
-            this.startActivity(intent);
-        }
+        DataStoreHelper dataStore = new DataStoreHelper(data, c);
+        dataStore.sendData();
+        return null;
     }
+}
+
+// Handle first run
+@Override
+protected void onResume()
+{
+    super.onResume();
+
+    if (prefs.getBoolean("firstrun", true))
+    {
+        Intent intent = new Intent(this, EmailSelector.class);
+        this.startActivity(intent);
+    }
+}
 
 }

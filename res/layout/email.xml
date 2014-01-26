@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:hint="you@gmail.com"
                 android:singleLine="true"
+                android:inputType="textEmailAddress"
                 android:textSize="25dp" />
 
         <LinearLayout 
