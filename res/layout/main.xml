@@ -6,31 +6,21 @@
         android:stretchColumns="0,1"
         tools:context=".MainActivity" >
  
-    <TableRow> 
         <TextView
+        		android:id="@+id/flash_data"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:textSize="25sp"
                 android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:text="Product ID : " />
-        
-        <EditText                          
-                android:id="@+id/p_id"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:hint="0xDOGE"
-                android:textSize="25sp" />
-    </TableRow>
-
+                android:paddingBottom="15dp"/>
+  
     <Button
             android:id="@+id/send"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:gravity="center_horizontal"
-            android:text="Send to the DataStore" />
+            android:text="Flash a new QR Code" />
 
 </TableLayout>
 
