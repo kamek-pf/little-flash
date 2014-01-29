@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.littleflash.pojo.AlertMaker;
 import com.littleflash.pojo.DataStoreHelper;
 import com.littleflash.pojo.DependencyChecker;
 import com.littleflash.pojo.QRData;
@@ -28,12 +28,14 @@ public class MainActivity extends Activity {
     private Button send;
     private DependencyChecker checker;
     private Context c;
+    private AlertMaker alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         c = this.getApplicationContext();
+        alert = new AlertMaker(this);
         checker = new DependencyChecker(c);
 
         prefs = getSharedPreferences("com.littleflash.core", MODE_PRIVATE);
@@ -80,26 +82,29 @@ public class MainActivity extends Activity {
                 startActivityForResult(intent, 0); 
             }
             else
-            {
-                Uri marketUri = Uri.parse("market://details?id=com.google.zxing.client.android");
-                Intent marketIntent = new Intent(Intent.ACTION_VIEW,marketUri);
-                startActivity(marketIntent);
-            }
-
-            //new SendThread(c).execute();
+            	alert.needCodeReader();
         }
     };
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0) {
-            if (resultCode == RESULT_OK) {
-                flashData.setText(data.getStringExtra("SCAN_RESULT")); //this is the result
-            } else
-                if (resultCode == RESULT_CANCELED) {
-                    // Handle cancel
-                }
+    protected void onActivityResult(int requestCode, int resultCode, Intent intentData) 
+    {
+        String result;
+        super.onActivityResult(requestCode, resultCode, intentData);
+        if (requestCode == 0) 
+        {
+            if (resultCode == RESULT_OK) 
+            {
+                result = intentData.getStringExtra("SCAN_RESULT");
+                flashData.setText(result); //this is the result
+                data.process(result); 
+                
+                new SendThread(c).execute();
+            } 
+            else if (resultCode == RESULT_CANCELED) 
+            {
+                // Handle cancel
+            }
         }
     }
 
