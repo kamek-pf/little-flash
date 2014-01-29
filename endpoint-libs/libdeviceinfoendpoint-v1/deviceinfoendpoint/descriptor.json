@@ -1,13 +1,13 @@
 {
   "files": [
     {
-      "downloadUrl": "/downloads/deviceinfoendpoint/v1/20140126154332/java/1.16.0-rc/littleflash.com-deviceinfoendpoint-v1-20140126154332-java-1.16.0-rc-sources.jar", 
-      "path": "littleflash.com-deviceinfoendpoint-v1-20140126154332-java-1.16.0-rc-sources.jar", 
+      "downloadUrl": "/downloads/deviceinfoendpoint/v1/20140129213636/java/1.16.0-rc/littleflash.com-deviceinfoendpoint-v1-20140129213636-java-1.16.0-rc-sources.jar", 
+      "path": "littleflash.com-deviceinfoendpoint-v1-20140129213636-java-1.16.0-rc-sources.jar", 
       "type": "source", 
-      "timestamp": "2014-01-26 15:43"
+      "timestamp": "2014-01-29 21:36"
     }, 
     {
-      "path": "littleflash.com-deviceinfoendpoint-v1-20140126154332-java-1.16.0-rc.jar.properties", 
+      "path": "littleflash.com-deviceinfoendpoint-v1-20140129213636-java-1.16.0-rc.jar.properties", 
       "type": "android.properties"
     }
   ], 
@@ -702,5 +702,5 @@
   "packagePath": "activities", 
   "language_version": "1.16.0-rc", 
   "id": "deviceinfoendpoint:v1", 
-  "revision": 20140126154332
+  "revision": 20140129213636
 }
