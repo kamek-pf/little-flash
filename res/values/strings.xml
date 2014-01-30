@@ -3,6 +3,7 @@
 
     <string name="app_name">Little Flash</string>
     <string name="email_settings_title">Little Flash - Email Settings</string>
+    <string name="item_viewer_title">Little Flash - Item Info</string>
     <string name="action_settings">Settings</string>
     <string name="email_settings">Set e-mail address</string>
     <string name="email_default_btn">Default</string>

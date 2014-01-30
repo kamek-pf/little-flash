@@ -7,6 +7,8 @@
     <uses-sdk android:minSdkVersion="17" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera"
+                  android:required="true" />
 
     <permission
             android:name="com.littleflash.activities.permission.C2D_MESSAGE"
@@ -56,7 +58,8 @@
                 android:windowSoftInputMode="stateHidden" 
                 android:label="@string/email_settings_title"/>
 
-        <activity android:name="com.littleflash.activity.ItemViewer" />
+        <activity android:name="com.littleflash.activity.ItemViewer"
+        		android:label="@string/item_viewer_title"/>
 
             </application>
 
