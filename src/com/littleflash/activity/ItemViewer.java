@@ -6,16 +6,33 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.littleflash.activities.R;
+import com.littleflash.pojo.QRData;
 
 public class ItemViewer extends Activity {
 
+	public static final String EXTRA_KEY_IN = "EXTRA_IN";
+	 
+    private TextView ref;
+    private TextView price;
+    private TextView info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.email);
+        setContentView(R.layout.viewer);
+
+        QRData data = (QRData) getIntent().getExtras().getParcelable("data");
+
+        ref = (TextView) findViewById(R.id.item_ref);
+        price = (TextView) findViewById(R.id.item_price);
+        info = (TextView) findViewById(R.id.item_info);
+
+        ref.setText(data.getItemId() + " - " + data.getItemName());
+        price.setText("" + data.getPrice() + " €");
+        info.setText(data.getItemInfo());
     }
 
     // Set drop down menu

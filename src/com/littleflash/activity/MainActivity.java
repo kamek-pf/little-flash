@@ -12,19 +12,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
 
+import com.littleflash.activities.R;
 import com.littleflash.pojo.AlertMaker;
 import com.littleflash.pojo.DataStoreHelper;
 import com.littleflash.pojo.DependencyChecker;
 import com.littleflash.pojo.QRData;
-import com.littleflash.activities.R;
-import com.littleflash.activity.EmailSelector;
 public class MainActivity extends Activity {
 
     private SharedPreferences prefs = null;
     private QRData data;
-    private TextView flashData;
     private Button send;
     private DependencyChecker checker;
     private Context c;
@@ -41,7 +38,6 @@ public class MainActivity extends Activity {
         prefs = getSharedPreferences("com.littleflash.core", MODE_PRIVATE);
         data = new QRData();
 
-        flashData = (TextView) findViewById(R.id.flash_data);
         send = (Button) findViewById(R.id.send);
 
         send.setOnClickListener(sendListener);
@@ -77,8 +73,8 @@ public class MainActivity extends Activity {
             if(checker.readerInstalled())
             {
                 Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-                intent.putExtra("SCAN_MODE", "QR_CODE_MODE"); //for Qr code, its "QR_CODE_MODE" instead of "PRODUCT_MODE"
-                intent.putExtra("SAVE_HISTORY", false);//this stops saving ur barcode in barcode scanner app's history
+                intent.putExtra("SCAN_MODE", "QR_CODE_MODE"); 
+                intent.putExtra("SAVE_HISTORY", false); // This stops saving your code in ZXing's history
                 startActivityForResult(intent, 0); 
             }
             else
@@ -96,22 +92,24 @@ public class MainActivity extends Activity {
             if (resultCode == RESULT_OK) 
             {
                 result = intentData.getStringExtra("SCAN_RESULT");
-                flashData.setText(result); //this is the result
                 data.process(result); 
                 
                 if(data.getItemId().equals(""))
                 	alert.invalidData();
                 else
+                {
+                    Intent i = new Intent(this, ItemViewer.class);
+                    i.putExtra("data", data);
                 	new SendThread(c).execute();
+                    startActivity(i);
+                }
             } 
             else if (resultCode == RESULT_CANCELED) 
-            {
-                // Handle cancel
-            }
+                alert.invalidData();
         }
     }
 
-    // Thread for netwok stuff
+    // Thread for network stuff
     private class SendThread extends AsyncTask<Void, Void, Void>
     {
         private Context c;

@@ -5,16 +5,16 @@
         android:layout_height="fill_parent"
         android:stretchColumns="0,1"
         tools:context=".MainActivity" >
- 
-        <TextView
-        		android:id="@+id/flash_data"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="25sp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"/>
-  
+
+    <TextView
+            android:id="@+id/flash_data"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="25sp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"/>
+
     <Button
             android:id="@+id/send"
             android:layout_height="wrap_content"

@@ -7,7 +7,13 @@
     <string name="email_settings">Set e-mail address</string>
     <string name="email_default_btn">Default</string>
     <string name="email_save_btn">Save</string>
+    <string name="flash_save_btn">Save</string>
+    <string name="flash_del_btn">Delete</string>
+    <string name="flash_add_pic_btn">Take a picture</string>
 
+    <string name="flash_viewer_info">Here are the informations of an item you flashed.
+        \nYou can save it, delete it, or add a picture.</string>
+    
     <string name="email_info">Little Flash will send notifications by e-mail.
         \nYour main e-mail address should\'ve been detected automatically.
         \n\nIf you didn\'t set any on your phone, or if you\'d like to use another 
