@@ -99,7 +99,10 @@ public class MainActivity extends Activity {
                 flashData.setText(result); //this is the result
                 data.process(result); 
                 
-                new SendThread(c).execute();
+                if(data.getItemId().equals(""))
+                	alert.invalidData();
+                else
+                	new SendThread(c).execute();
             } 
             else if (resultCode == RESULT_CANCELED) 
             {

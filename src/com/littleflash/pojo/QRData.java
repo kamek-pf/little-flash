@@ -12,10 +12,25 @@ public class QRData {
     {
         String[] part = flash.split("#");
 
-        this.itemId = part[1];
-        this.itemName = part[2];
-        this.price = Double.parseDouble(part[3]);
-        this.itemInfo = part[4];
+        if(part.length != 5)
+        {
+            this.itemId = "";
+            this.itemName = "";
+            this.price = 0.0;
+            this.itemInfo = "";
+        }
+        else
+        {
+            this.itemId = part[1];
+            this.itemName = part[2];
+            try{
+                this.price = Double.parseDouble(part[3]);
+            }
+            catch(NumberFormatException e){
+                this.price=0.0;
+            }
+            this.itemInfo = part[4];
+        }
     }
 
     public String getItemId() {

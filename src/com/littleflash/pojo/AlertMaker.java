@@ -38,6 +38,16 @@ public class AlertMaker
             alert.show();
     }
     
+    public void invalidData()
+    {
+    	Builder alert = new AlertDialog.Builder(a);
+        alert.setTitle("u wat mate ?");
+        alert.setMessage("Bro I have no idea what you just flashed.");
+        alert.setPositiveButton("duh", null); 
+
+        alert.show();
+    }
+    
     public void emailSaved()
     {
     	Builder alert = new AlertDialog.Builder(a);
