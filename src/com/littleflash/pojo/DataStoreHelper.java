@@ -6,8 +6,8 @@ import android.content.Context;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.littleflash.backend.flashendpoint.Flashendpoint;
-import com.littleflash.backend.flashendpoint.model.Flash;
+import com.littleflash.endpoint.flash.Flashendpoint;
+import com.littleflash.endpoint.flashModel.Flash;
 
 public class DataStoreHelper {
     

@@ -16,7 +16,7 @@
  * Modify at your own risk.
  */
 
-package com.littleflash.backend.flashendpoint;
+package com.littleflash.endpoint.flash;
 
 /**
  * Service definition for Flashendpoint (v1).
@@ -131,7 +131,7 @@ public class Flashendpoint extends com.google.api.client.googleapis.services.jso
     return result;
   }
 
-  public class GetFlash extends FlashendpointRequest<com.littleflash.backend.flashendpoint.model.Flash> {
+  public class GetFlash extends FlashendpointRequest<com.littleflash.endpoint.flashModel.Flash> {
 
     private static final String REST_PATH = "flash/{id}";
 
@@ -148,7 +148,7 @@ public class Flashendpoint extends com.google.api.client.googleapis.services.jso
      * @since 1.13
      */
     protected GetFlash(java.lang.Long id) {
-      super(Flashendpoint.this, "GET", REST_PATH, null, com.littleflash.backend.flashendpoint.model.Flash.class);
+      super(Flashendpoint.this, "GET", REST_PATH, null, com.littleflash.endpoint.flashModel.Flash.class);
       this.id = com.google.api.client.util.Preconditions.checkNotNull(id, "Required parameter id must be specified.");
     }
 
@@ -225,16 +225,16 @@ public class Flashendpoint extends com.google.api.client.googleapis.services.jso
    * optional parameters, call the {@link InsertFlash#execute()} method to invoke the remote
    * operation.
    *
-   * @param content the {@link com.littleflash.backend.flashendpoint.model.Flash}
+   * @param content the {@link com.littleflash.endpoint.flashModel.Flash}
    * @return the request
    */
-  public InsertFlash insertFlash(com.littleflash.backend.flashendpoint.model.Flash content) throws java.io.IOException {
+  public InsertFlash insertFlash(com.littleflash.endpoint.flashModel.Flash content) throws java.io.IOException {
     InsertFlash result = new InsertFlash(content);
     initialize(result);
     return result;
   }
 
-  public class InsertFlash extends FlashendpointRequest<com.littleflash.backend.flashendpoint.model.Flash> {
+  public class InsertFlash extends FlashendpointRequest<com.littleflash.endpoint.flashModel.Flash> {
 
     private static final String REST_PATH = "flash";
 
@@ -247,11 +247,11 @@ public class Flashendpoint extends com.google.api.client.googleapis.services.jso
      * InsertFlash#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
      * must be called to initialize this instance immediately after invoking the constructor. </p>
      *
-     * @param content the {@link com.littleflash.backend.flashendpoint.model.Flash}
+     * @param content the {@link com.littleflash.endpoint.flashModel.Flash}
      * @since 1.13
      */
-    protected InsertFlash(com.littleflash.backend.flashendpoint.model.Flash content) {
-      super(Flashendpoint.this, "POST", REST_PATH, content, com.littleflash.backend.flashendpoint.model.Flash.class);
+    protected InsertFlash(com.littleflash.endpoint.flashModel.Flash content) {
+      super(Flashendpoint.this, "POST", REST_PATH, content, com.littleflash.endpoint.flashModel.Flash.class);
     }
 
     @Override
@@ -309,7 +309,7 @@ public class Flashendpoint extends com.google.api.client.googleapis.services.jso
     return result;
   }
 
-  public class ListFlash extends FlashendpointRequest<com.littleflash.backend.flashendpoint.model.CollectionResponseFlash> {
+  public class ListFlash extends FlashendpointRequest<com.littleflash.endpoint.flashModel.CollectionResponseFlash> {
 
     private static final String REST_PATH = "flash";
 
@@ -325,7 +325,7 @@ public class Flashendpoint extends com.google.api.client.googleapis.services.jso
      * @since 1.13
      */
     protected ListFlash() {
-      super(Flashendpoint.this, "GET", REST_PATH, null, com.littleflash.backend.flashendpoint.model.CollectionResponseFlash.class);
+      super(Flashendpoint.this, "GET", REST_PATH, null, com.littleflash.endpoint.flashModel.CollectionResponseFlash.class);
     }
 
     @Override
@@ -509,16 +509,16 @@ public class Flashendpoint extends com.google.api.client.googleapis.services.jso
    * optional parameters, call the {@link UpdateFlash#execute()} method to invoke the remote
    * operation.
    *
-   * @param content the {@link com.littleflash.backend.flashendpoint.model.Flash}
+   * @param content the {@link com.littleflash.endpoint.flashModel.Flash}
    * @return the request
    */
-  public UpdateFlash updateFlash(com.littleflash.backend.flashendpoint.model.Flash content) throws java.io.IOException {
+  public UpdateFlash updateFlash(com.littleflash.endpoint.flashModel.Flash content) throws java.io.IOException {
     UpdateFlash result = new UpdateFlash(content);
     initialize(result);
     return result;
   }
 
-  public class UpdateFlash extends FlashendpointRequest<com.littleflash.backend.flashendpoint.model.Flash> {
+  public class UpdateFlash extends FlashendpointRequest<com.littleflash.endpoint.flashModel.Flash> {
 
     private static final String REST_PATH = "flash";
 
@@ -531,11 +531,11 @@ public class Flashendpoint extends com.google.api.client.googleapis.services.jso
      * UpdateFlash#initialize(com.google.api.client.googleapis.services.AbstractGoogleClientRequest)}
      * must be called to initialize this instance immediately after invoking the constructor. </p>
      *
-     * @param content the {@link com.littleflash.backend.flashendpoint.model.Flash}
+     * @param content the {@link com.littleflash.endpoint.flashModel.Flash}
      * @since 1.13
      */
-    protected UpdateFlash(com.littleflash.backend.flashendpoint.model.Flash content) {
-      super(Flashendpoint.this, "PUT", REST_PATH, content, com.littleflash.backend.flashendpoint.model.Flash.class);
+    protected UpdateFlash(com.littleflash.endpoint.flashModel.Flash content) {
+      super(Flashendpoint.this, "PUT", REST_PATH, content, com.littleflash.endpoint.flashModel.Flash.class);
     }
 
     @Override

@@ -16,7 +16,7 @@
  * Modify at your own risk.
  */
 
-package com.littleflash.backend.flashendpoint.model;
+package com.littleflash.endpoint.flashModel;
 
 /**
  * Model definition for CollectionResponseFlash.
