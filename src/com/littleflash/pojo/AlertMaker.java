@@ -28,14 +28,24 @@ public class AlertMaker
         alert.show();
     }
     
+    public void photoFailed()
+    {
+    	 Builder alert = new AlertDialog.Builder(a);
+         alert.setTitle("Can't take picture");
+         alert.setMessage("Cannot create file to save picture. Maybe you don't have enough space left ?");
+         alert.setPositiveButton("OK", null);
+            
+         alert.show();
+    }
+    
     public void emailFailed()
     {
     	 Builder alert = new AlertDialog.Builder(a);
-            alert.setTitle("wut");
-            alert.setMessage("This is not a valid e-mail address D:");
-            alert.setPositiveButton("My bad", null);
+         alert.setTitle("wut");
+         alert.setMessage("This is not a valid e-mail address D:");
+         alert.setPositiveButton("My bad", null);
             
-            alert.show();
+         alert.show();
     }
     
     public void invalidData()
@@ -48,6 +58,16 @@ public class AlertMaker
         alert.show();
     }
     
+    public void itemSaved()
+    {
+    	Builder alert = new AlertDialog.Builder(a);
+        alert.setTitle("Item saved");
+        alert.setMessage("This item has been saved, you'll get notifications whenever it's on sale.");
+        alert.setPositiveButton("OK", finisher); 
+
+        alert.show();
+    }
+
     public void emailSaved()
     {
     	Builder alert = new AlertDialog.Builder(a);

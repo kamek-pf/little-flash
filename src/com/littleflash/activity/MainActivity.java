@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import com.littleflash.activities.R;
 import com.littleflash.pojo.AlertMaker;
 import com.littleflash.pojo.DataStoreHelper;
 import com.littleflash.pojo.DependencyChecker;
+import com.littleflash.pojo.ItemHandler;
 import com.littleflash.pojo.QRData;
 public class MainActivity extends Activity {
 
@@ -41,6 +43,8 @@ public class MainActivity extends Activity {
         send = (Button) findViewById(R.id.send);
 
         send.setOnClickListener(sendListener);
+        Log.i("checking", "count : " + ItemHandler.getItemCount(c));
+        Log.i("checking", prefs.getString("item_1ref", ""));
     }
 
     // Set drop down menu

@@ -1,8 +1,7 @@
 package com.littleflash.activity;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.util.UUID;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,7 +20,7 @@ import android.widget.TextView;
 
 import com.littleflash.activities.R;
 import com.littleflash.event.PictureButtonListener;
-import com.littleflash.pojo.EmailHandler;
+import com.littleflash.event.SaveButtonListener;
 import com.littleflash.pojo.QRData;
 
 public class ItemViewer extends Activity {
@@ -34,16 +33,19 @@ public class ItemViewer extends Activity {
     private ImageView photoView;
     private String photoPath;
     private File photoFile = null;
+    private String uuid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.viewer);
 
+        uuid = UUID.randomUUID().toString();
         QRData data = (QRData) getIntent().getExtras().getParcelable("data");
-        photoPath = Environment.getExternalStorageDirectory() + "/tmp.jpg";
-        photoFile = new File(Environment.getExternalStorageDirectory() + "/tmp.jpg");
-
+        photoPath = Environment.getExternalStorageDirectory() + "/tmp" + ".jpg";
+        //photoPath = Environment.getExternalStorageDirectory() + "/LittleFlash-" + uuid + ".jpg";
+        
+        photoFile = new File(photoPath);
 
         // Get views
         ref = (TextView) findViewById(R.id.item_ref);
@@ -56,11 +58,12 @@ public class ItemViewer extends Activity {
 
         // Set TextViews' text
         ref.setText(data.getItemId() + " - " + data.getItemName());
-        price.setText("" + data.getPrice() + " €");
+        price.setText("" + data.getPrice());
         info.setText(data.getItemInfo());
 
         // Set listeners
         picBtn.setOnClickListener(new PictureButtonListener(this, photoFile));
+        saveBtn.setOnClickListener(new SaveButtonListener(this, uuid, ref, price, info));
     }
 
     // Set drop down menu

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.littleflash.activities.R;
+import com.littleflash.pojo.AlertMaker;
 
 public class PictureButtonListener implements OnClickListener {
 
@@ -30,15 +31,23 @@ public class PictureButtonListener implements OnClickListener {
     {
         if(v.getId() == R.id.flash_add_pic)
         {
-        	Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        	// Ensure that there's a camera activity to handle the intent
-            if (takePictureIntent.resolveActivity(a.getPackageManager()) != null) {
-                // Continue only if the File was successfully created
-                if (photoFile != null) {
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-                    a.startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-                }
-            }
+        	if(photoFile == null)
+        	{
+        		AlertMaker alert = new AlertMaker(a);
+        		alert.photoFailed();
+        	}
+        	else
+        	{
+	        	Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+	        	// Ensure that there's a camera activity to handle the intent
+	            if (takePictureIntent.resolveActivity(a.getPackageManager()) != null) {
+	                // Continue only if the File was successfully created
+	                if (photoFile != null) {
+	                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+	                    a.startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+	                }
+	            }
+        	}
 
         }
     }
