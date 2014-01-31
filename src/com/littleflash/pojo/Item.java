@@ -8,13 +8,15 @@ public class Item
     private String ref;
     private double price;
     private String info;
+    private boolean hasPic;
     
-	public Item(String uuid, String ref, double price, String info)
+	public Item(String uuid, String ref, double price, String info, boolean hasPic)
     {
         this.uuid = uuid;
         this.ref = ref;
         this.price = price;
         this.info = info;
+        this.hasPic(hasPic);
     }
 
     public String getUuid() {
@@ -47,6 +49,14 @@ public class Item
 
 	public void setInfo(String info) {
 		this.info = info;
+	}
+
+	public boolean hasPic() {
+		return hasPic;
+	}
+
+	public void hasPic(boolean hasPic) {
+		this.hasPic = hasPic;
 	}
 
 }

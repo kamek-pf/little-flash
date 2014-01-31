@@ -6,21 +6,27 @@
         android:stretchColumns="0,1"
         tools:context=".MainActivity" >
 
-    <TextView
-            android:id="@+id/flash_data"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textSize="25sp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"/>
-
     <Button
             android:id="@+id/send"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:text="Flash a new QR Code" />
+
+    <LinearLayout 
+            android:layout_width="fill_parent"
+            android:id="@+id/mainLayout"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+        <ListView
+                android:id="@+id/display_list"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent" />
+
+    </LinearLayout>
 
 </TableLayout>
 

@@ -1,50 +1,56 @@
 package com.littleflash.activity;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.littleflash.activities.R;
+import com.littleflash.adapter.ItemAdapter;
 import com.littleflash.pojo.AlertMaker;
 import com.littleflash.pojo.DataStoreHelper;
 import com.littleflash.pojo.DependencyChecker;
 import com.littleflash.pojo.ItemHandler;
 import com.littleflash.pojo.QRData;
+import com.littleflash.pojo.Item;
 public class MainActivity extends Activity {
 
+	private static ArrayList<Item> itemList = new ArrayList<Item>();
     private SharedPreferences prefs = null;
+    private static ItemAdapter adapter;
     private QRData data;
     private Button send;
     private DependencyChecker checker;
     private Context c;
     private AlertMaker alert;
+    private ListView lst;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) 
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+       
         c = this.getApplicationContext();
+        data = new QRData();
         alert = new AlertMaker(this);
         checker = new DependencyChecker(c);
-
+        
         prefs = getSharedPreferences("com.littleflash.core", MODE_PRIVATE);
-        data = new QRData();
-
-        send = (Button) findViewById(R.id.send);
-
+        
+        send = (Button) findViewById(R.id.send);    
         send.setOnClickListener(sendListener);
-        Log.i("checking", "count : " + ItemHandler.getItemCount(c));
-        Log.i("checking", prefs.getString("item_1ref", ""));
     }
 
     // Set drop down menu
@@ -131,19 +137,33 @@ public class MainActivity extends Activity {
         }
     }
 
-    // Handle first run
     @Override
     protected void onResume()
     {
         super.onResume();
 
+        // Handle first run
         if (prefs.getBoolean("firstrun", true))
         {
             Intent intent = new Intent(this, EmailSelector.class);
             this.startActivity(intent);
         }
         
+        // Set up the list
+        lst = (ListView) findViewById(R.id.display_list); 
+        adapter = new ItemAdapter(this.getApplicationContext(), R.layout.item, itemList);
+        lst.setAdapter(adapter);
+        itemList = ItemHandler.getList(c);
+        adapter.notifyDataSetChanged();
+        
         ItemViewer.HAS_PIC = false;
     }
 
+	public static ArrayList<Item> getItemList() {
+		return itemList;
+	}
+    
+    public static ItemAdapter getAdapter() {
+        return adapter;
+    }
 }

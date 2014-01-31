@@ -63,7 +63,7 @@ public class ItemViewer extends Activity {
 
         // Set listeners
         picBtn.setOnClickListener(new PictureButtonListener(this, photoFile));
-        saveBtn.setOnClickListener(new SaveButtonListener(this, uuid, ref, price, info));
+        saveBtn.setOnClickListener(new SaveButtonListener(this, uuid, ref, price, info, HAS_PIC));
     }
 
     // Set drop down menu
