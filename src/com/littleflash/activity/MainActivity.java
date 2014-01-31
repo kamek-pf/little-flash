@@ -138,6 +138,8 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(this, EmailSelector.class);
             this.startActivity(intent);
         }
+        
+        ItemViewer.HAS_PIC = false;
     }
 
 }
