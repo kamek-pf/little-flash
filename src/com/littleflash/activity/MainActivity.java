@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -59,7 +60,7 @@ public class MainActivity extends Activity {
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.list_options, menu);
+        inflater.inflate(R.menu.list_options_main, menu);
 
         return true;
     }
@@ -68,10 +69,29 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected (MenuItem item)
     {
+    	boolean dataChanged = false;
         if(item.getItemId() == R.id.email_settings)
         {
             Intent intent = new Intent(this, EmailSelector.class);
             this.startActivity(intent);
+        }
+        else if(item.getItemId() == R.id.clear_selected)
+        {
+        	for(int i = itemList.size() - 1; i >= 0; i--)
+        	{
+        		Log.i("checkbox", "found item");
+        		Item current = itemList.get(i);
+                if(current.isChecked())
+                {
+                    itemList.remove(current);
+                    ItemHandler.deleteItem(c, ItemHandler.getItemIndice(c, current));
+                    dataChanged = true;
+                    Log.i("checkbox", "found item to be deleted");
+                } 
+            }
+        	 if(dataChanged)
+                 adapter.notifyDataSetChanged();
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -151,7 +171,7 @@ public class MainActivity extends Activity {
         
         // Set up the list
         lst = (ListView) findViewById(R.id.display_list); 
-        adapter = new ItemAdapter(this.getApplicationContext(), R.layout.item, itemList);
+        adapter = new ItemAdapter(this, R.layout.item, itemList);
         lst.setAdapter(adapter);
         itemList = ItemHandler.getList(c);
         adapter.notifyDataSetChanged();

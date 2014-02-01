@@ -40,7 +40,6 @@ public class SaveButtonListener implements OnClickListener {
             // Create a new Item to store in the SQLite database
             Item storeItem = new Item(uuid, ref, price, info, hasPic);
             ItemHandler.storeItem(a.getApplicationContext(), storeItem);
-           
             
             MainActivity.getItemList().add(storeItem);
             MainActivity.getAdapter().notifyDataSetChanged();

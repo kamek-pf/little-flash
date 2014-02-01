@@ -30,6 +30,16 @@ public class ItemHandler
     	return item;
     }
     
+    public static int getItemIndice(Context c, Item item)
+    {
+    	SharedPreferences prefs = c.getSharedPreferences("com.littleflash.core", Context.MODE_PRIVATE);
+    	int indice = 0;
+    	String[] part = prefs.getString("item_" + indice  + "_uuid", "").split("_");
+    	indice = Integer.parseInt(part[2]);
+    	
+    	return indice;
+    }
+    
     public static ArrayList<Item> getList(Context c)
     {
     	ArrayList<Item> itemList = new ArrayList<Item>();

@@ -29,7 +29,7 @@ public class ItemViewer extends Activity {
 	public static boolean HAS_PIC = false;
 
     private TextView ref, price, info;
-    private Button picBtn, saveBtn, delBtn;
+    private Button picBtn, saveBtn;
     private ImageView photoView;
     private String photoPath;
     private File photoFile = null;
@@ -53,7 +53,6 @@ public class ItemViewer extends Activity {
         info = (TextView) findViewById(R.id.item_info);
         picBtn = (Button) findViewById(R.id.flash_add_pic);
         saveBtn = (Button) findViewById(R.id.flash_save);
-        delBtn = (Button) findViewById(R.id.flash_del);
         photoView = (ImageView) findViewById(R.id.img_thumb);
 
         // Set TextViews' text

@@ -11,6 +11,7 @@
     <string name="flash_save_btn">Save</string>
     <string name="flash_del_btn">Delete</string>
     <string name="flash_add_pic_btn">Take a picture</string>
+    <string name="clear_selected">Clear selected items</string>
 
     <string name="flash_viewer_info">Here are the informations of an item you flashed.
         \nYou can save it, delete it, or add a picture.</string>

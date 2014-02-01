@@ -25,6 +25,7 @@ public class QRData implements Parcelable{
     private String itemName;
     private double price;
     private String itemInfo;
+    private boolean simpleView;
 
     public QRData()
     {
@@ -32,6 +33,7 @@ public class QRData implements Parcelable{
         this.itemName = "";
         this.price = 0.0;
         this.itemInfo = "";
+        this.setSimpleView(false);
     }
     
     public QRData(Parcel in)
@@ -106,5 +108,13 @@ public class QRData implements Parcelable{
 		dest.writeString(itemName);
 		dest.writeDouble(price);
 		dest.writeString(itemInfo);
+	}
+
+	public boolean isSimpleView() {
+		return simpleView;
+	}
+
+	public void setSimpleView(boolean simpleView) {
+		this.simpleView = simpleView;
 	}
 }
