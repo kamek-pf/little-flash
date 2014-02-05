@@ -1,17 +1,12 @@
 package com.littleflash.event;
 
-import java.io.File;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.littleflash.activities.R;
 import com.littleflash.activity.ItemViewer;
-import com.littleflash.pojo.AlertMaker;
 import com.littleflash.pojo.QRData;
 
 public class ItemNameListener implements OnClickListener {

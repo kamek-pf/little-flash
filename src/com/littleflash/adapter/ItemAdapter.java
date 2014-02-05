@@ -8,7 +8,6 @@ import com.littleflash.event.ItemNameListener;
 import com.littleflash.pojo.Item;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
